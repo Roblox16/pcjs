@@ -1,0 +1,56 @@
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    {%- comment %}{% seo %}{% endcomment %}
+    <meta name="description" content="{{ site.tagline }} {{ site.description | default: site.github.project_tagline | rstrip }}">
+    {%- if page.iconTitle != nil %}
+    <meta name="apple-mobile-web-app-title" content="{{ page.iconTitle }}">
+    {%- else %}
+    <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+    {%- endif %}
+    {%- if page.layout == "pwa" %}
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    {%- endif %}
+    {%- if page.title != nil %}
+    <meta name="twitter:title" property="og:title" content="{{ page.title }}">
+    {%- else %}
+    <meta name="twitter:title" property="og:title" content="{{ site.title }}">
+    {%- endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jeffpar">
+    {%- if page.preview != nil %}
+      {%- assign preview_start = page.preview | slice: 0 %}
+      {%- assign preview_prefix = page.preview | slice: 0, 4 %}
+      {%- if preview_prefix == "http" %}
+    <meta name="twitter:image" property="og:image" content="{{ page.preview }}">
+      {%- elsif preview_start == "/" %}
+    <meta name="twitter:image" property="og:image" content="{{ page.preview | prepend: site.baseurl | prepend: site.url }}">
+      {%- else %}
+    <meta name="twitter:image" property="og:image" content="{{ page.preview | prepend: page.dir | prepend: site.baseurl | prepend: site.url }}">
+      {%- endif %}
+    {%- else %}
+    <meta name="twitter:image" property="og:image" content="{{ '/assets/img/logo-home.png' | prepend: site.baseurl | prepend: site.url }}">
+    {%- endif %}
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    {%- if page.iconList != nil %}
+      {%- for icon in page.iconList %}
+    <link rel="apple-touch-icon" sizes="{{ icon.size }}" href="{{ site.baseurl }}{{ icon.url }}">
+      {%- endfor %}
+    {%- else %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/icons/apple-touch-icon.png">
+    {%- endif %}
+    <link rel="icon" type="image/png" sizes="180x180" href="{{ site.baseurl }}/assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="{{ site.baseurl }}/assets/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ site.baseurl }}/assets/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="{{ site.baseurl }}/assets/icons/browserconfig.xml">
+{% include machine/styles.html %}
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
