@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "gulp",
+      "label": "gulp watch",
+      "task": "watch",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "type": "shell",
+      "label": "bundle serve",
+      "command": "bundle exec jekyll serve --host 0.0.0.0 --port 4000 --config _config.yml",
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "bundle serve uncompiled",
+      "command": "bundle exec jekyll serve --host 0.0.0.0 --port 4000 --config _config.yml,_developer.yml",
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}
